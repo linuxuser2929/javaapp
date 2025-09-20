@@ -1,0 +1,24 @@
+name: java-docker
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+        - name: Clone Repo
+          uses: actions/checkout@v4
+        - name: set up jdk
+          uses: actions/setup-java@v5
+          with:
+            distribution: 'temurin' # See 'Supported distributions' for available options
+            java-version: '21'
+        - name: Complie java file
+          run: javac src/*.java
+
+        - name: Run java program
+          run: java -cp src Main
+
